@@ -46,7 +46,6 @@ export class Graph extends Component {
           message={this.state.message}
           close={() => this.setState({ open: false })}
         />
-        ;
       </div>
     );
   }
