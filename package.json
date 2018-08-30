@@ -2,6 +2,7 @@
   "name": "gui",
   "version": "0.1.0",
   "private": true,
+  "homepage": "./",
   "dependencies": {
     "@material-ui/core": "^1.2.1",
     "@material-ui/icons": "^1.1.0",
@@ -20,8 +21,11 @@
     "eject": "react-scripts eject"
   },
   "presets": [
-    ["env", {
-      "modules": false
-    }]
+    [
+      "env",
+      {
+        "modules": false
+      }
+    ]
   ]
 }
