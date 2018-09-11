@@ -4,6 +4,7 @@ simple graphviz browser developed for [Abap debugger object graph extension](htt
 Should work with any valid graph
 
 In branch gh-pages you will find the latest build, it's all static and should work served from any location, including BSP pages.
+Or you can use said build in this project's [github page](https://marcellourbani.github.io/Graphviz-browser/index.html) 
 
 # Credits
 
