@@ -16,12 +16,12 @@ function encoderForArrayFormat(options) {
         return value === null
           ? [encode(key, options), "[", index, "]"].join("")
           : [
-              encode(key, options),
-              "[",
-              encode(index, options),
-              "]=",
-              encode(value, options)
-            ].join("");
+            encode(key, options),
+            "[",
+            encode(index, options),
+            "]=",
+            encode(value, options)
+          ].join("");
       };
     case "bracket":
       return (key, value) => {
@@ -172,7 +172,7 @@ function parse(input, options) {
       return result;
     }, Object.create(null));
 }
-
+var exports = {}
 exports.extract = extract;
 exports.parse = parse;
 
@@ -186,43 +186,43 @@ exports.stringify = (obj, options) => {
   options = Object.assign(defaults, options);
 
   if (options.sort === false) {
-    options.sort = () => {};
+    options.sort = () => { };
   }
 
   const formatter = encoderForArrayFormat(options);
 
   return obj
     ? Object.keys(obj)
-        .sort(options.sort)
-        .map(key => {
-          const value = obj[key];
+      .sort(options.sort)
+      .map(key => {
+        const value = obj[key];
 
-          if (value === undefined) {
-            return "";
-          }
+        if (value === undefined) {
+          return "";
+        }
 
-          if (value === null) {
-            return encode(key, options);
-          }
+        if (value === null) {
+          return encode(key, options);
+        }
 
-          if (Array.isArray(value)) {
-            const result = [];
+        if (Array.isArray(value)) {
+          const result = [];
 
-            for (const value2 of value.slice()) {
-              if (value2 === undefined) {
-                continue;
-              }
-
-              result.push(formatter(key, value2, result.length));
+          for (const value2 of value.slice()) {
+            if (value2 === undefined) {
+              continue;
             }
 
-            return result.join("&");
+            result.push(formatter(key, value2, result.length));
           }
 
-          return encode(key, options) + "=" + encode(value, options);
-        })
-        .filter(x => x.length > 0)
-        .join("&")
+          return result.join("&");
+        }
+
+        return encode(key, options) + "=" + encode(value, options);
+      })
+      .filter(x => x.length > 0)
+      .join("&")
     : "";
 };
 
@@ -232,3 +232,5 @@ exports.parseUrl = (input, options) => {
     query: parse(extract(input), options)
   };
 };
+
+export default exports;
